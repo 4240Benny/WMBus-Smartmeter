@@ -1,0 +1,31 @@
+# Copy this file to config.yaml and adjust it.
+# config.yaml is gitignored so the AES key never ends up in the repository.
+
+meter:
+  # 128-bit AES key of your meter as 32 hex digits. You get this key from
+  # your grid operator / utility company. Alternatively set the
+  # METERREADER_AES_KEY environment variable and omit it here.
+  aes_key: "00000000000000000000000000000000"
+
+radio:
+  # SPI bus and chip select of the CC1101 (0/0 = /dev/spidev0.0)
+  spi_bus: 0
+  spi_chip_select: 0
+  spi_speed_hz: 10000000
+  # GPIO chip and the GPIOs connected to the CC1101 GDO pins
+  # (gpio_chip 0 on all Raspberry Pi models up to 4; use 4 on a Pi 5)
+  gpio_chip: 0
+  gdo0_gpio: 24
+  gdo2_gpio: 25
+  # wM-Bus mode T meters transmit at 868.95 MHz
+  frequency_hz: 868950000
+  # how long to listen before restarting the receive cycle; keep this above
+  # the transmit interval of your meter
+  receive_timeout_seconds: 8
+
+http:
+  host: "0.0.0.0"
+  port: 80
+
+# DEBUG, INFO, WARNING or ERROR. INFO logs one line per received telegram.
+log_level: INFO

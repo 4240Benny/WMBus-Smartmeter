@@ -1,0 +1,22 @@
+# systemd unit for the wM-Bus meter reader.
+#
+# Adjust the paths to your installation, then:
+#   sudo cp deploy/meterreader.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now meterreader
+
+[Unit]
+Description=Wireless M-Bus smart meter reader
+After=network.target
+
+[Service]
+# root is required for port 80; use an unprivileged user (in the spi and
+# gpio groups) if you configure a port >= 1024
+User=root
+WorkingDirectory=/opt/meterreader
+ExecStart=/opt/meterreader/venv/bin/python -m meterreader --config /opt/meterreader/config.yaml
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

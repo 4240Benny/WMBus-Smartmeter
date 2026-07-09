@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wmbus-meterreader"
+version = "1.0.0"
+description = "Receive, decrypt and decode wireless M-Bus telegrams from a smart electricity meter with a CC1101 transceiver on a Raspberry Pi, and serve the readings over HTTP."
+readme = "README.md"
+license = { text = "GPL-3.0-or-later" }
+requires-python = ">=3.10"
+dependencies = [
+    "Flask>=2.0",
+    "waitress>=2.0",
+    "pycryptodome>=3.15",
+    "PyYAML>=6.0",
+    "spidev>=3.5; sys_platform == 'linux'",
+    "lgpio>=0.2; sys_platform == 'linux'",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+wmbus-meterreader = "meterreader.service:main"
+
+[tool.setuptools.packages.find]
+include = ["meterreader*"]
