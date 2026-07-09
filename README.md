@@ -7,7 +7,7 @@ over a small **HTTP API** — ready to be consumed by Home Assistant, evcc,
 scripts, or anything else that can poll JSON.
 
 Many European electricity meters (e.g. those rolled out by Austrian grid
-operators) broadcast an encrypted wM-Bus telegram every few seconds
+operators - e.g. Linz Netz) broadcast an encrypted wM-Bus telegram every few seconds
 containing total energy import/export and current power. With the AES key —
 which you can request from your grid operator — this service turns a
 Raspberry Pi and a ~3 € radio module into a local, cloud-free meter reader.
